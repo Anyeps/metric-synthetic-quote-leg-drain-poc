@@ -13,7 +13,7 @@ Fah's explicit approval.
   affected, max $500,000, min $50,000.
 - **Payout wallet:** `0x45859319d9a362f2146d0431dc30ab8f0ef1be73`
 - **PoC repo:** https://github.com/Anyeps/metric-synthetic-quote-leg-drain-poc
-  — verified from a fresh clone at commit `TBD`: `forge install`
+  — verified from a fresh clone at commit `d6e59ffd40ed6d4be91c6f8479d14674ba243905`: `forge install`
   (pinned deps) + `forge test` → **6 passed, 0 failed**.
 - **Code under test:** `pool-contracts` @ `ddf8ae0`, `oracle-contracts` @
   `7525bbd` (exact repo code, local deploy, no fork — see below).
@@ -231,8 +231,9 @@ because the harness deposit is 50M/50M raw units, so at the true cross
 the token0 side is worth ~19× the token1 side. Draining the whole
 token1 side (direction A) is therefore only ~5% of total position value
 — the honest impact measure there is the drainable side itself (90% of
-the pool's token1 extracted for ~0.008% of its true value). Direction B
-proves the majority-value side is equally drainable (85%). The garbage
+the pool's token1 extracted for <0.1% of its true value — asserted by
+the test; the measured payment was 41 token0 for 45,000,000 token1).
+Direction B proves the majority-value side is equally drainable (85%). The garbage
 cross can be wrong in either direction depending on the quote leg; the
 protocol validates neither.
 
